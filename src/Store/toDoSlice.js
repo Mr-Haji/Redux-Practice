@@ -9,24 +9,19 @@ const toDoSlice = createSlice(
         reducers:
         {
             addToDo(state, action) {
-                console.log("first")
-                state.ToDo.push([
-                    // ...ToDo,
+                state.ToDo.push(
                     {
                         id: nanoid(),
                         todo: action.payload,
                     },
-                    console.log(action.payload)
-                ])
 
-
-
+                )
             },
             removeToDo(state, action) {
-                return state.toSpliced(
-                    state.findIndex((t) => t.id === action.payload.id),
-                    1
-                )
+                console.log(action.payload)
+              
+             
+                return state.ToDo.filter(ToDo => ToDo.id !== action.payload)
             }
         }
     }
