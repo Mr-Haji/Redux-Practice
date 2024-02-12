@@ -3,7 +3,7 @@ import toDoSliceReducer from "./toDoSlice";
 
 
 const store = configureStore({
-    reducer: { toDoSliceReducer }
+   reducer: { toDoSliceReducer },
 })
 
 export default store

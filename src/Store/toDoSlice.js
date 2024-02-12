@@ -1,15 +1,18 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
+
 const initialState = {
-    ToDo: []
+    ToDoArr: []
 }
 const toDoSlice = createSlice(
     {
-        name: "ToDo",
+        name: "toDo",
         initialState,
         reducers:
         {
-            addToDo(state, action) {
-                state.ToDo.push(
+            addToDo: (state, action) => {
+
+
+                state.ToDoArr.push(
                     {
                         id: nanoid(),
                         todo: action.payload,
@@ -17,12 +20,13 @@ const toDoSlice = createSlice(
 
                 )
             },
-            removeToDo(state, action) {
-                console.log(action.payload)
-              
-             
-                return state.ToDo.filter(ToDo => ToDo.id !== action.payload)
-            }
+            removeToDo: (state, action) => {
+                return state.ToDoArr = state.ToDoArr.filter(
+                    (todos) =>{ todos.id !== action.payload.id}, // issue yha hy just 
+                    
+
+                );
+            },
         }
     }
 )
