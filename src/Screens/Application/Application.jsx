@@ -1,7 +1,12 @@
 import { nanoid } from "@reduxjs/toolkit";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToDo, removeToDo } from "../../Store/toDoSlice";
+import {
+  addToDo,
+  removeToDo,
+  deleteToDo,
+  editToDo,
+} from "../../Store/toDoSlice";
 
 const Home = () => {
   const [inputValue, setInputValue] = useState("");
@@ -15,13 +20,8 @@ const Home = () => {
   const editTodo = () => {
     console.log("Work IP");
   };
-  const remove = (e) => {
-    dispatch(removeToDo(e.id));
-  };
-  //Delet All
-  const deleteAll = () => {
-    setTodo([]);
-  };
+
+ 
   return (
     <>
       <input
@@ -36,7 +36,13 @@ const Home = () => {
       >
         Add
       </button>
-      <button onClick={deleteAll}>Delete</button>
+      <button
+        onClick={() => {
+          dispatch(deleteToDo());
+        }}
+      >
+        Delete
+      </button>
       <div>
         <ol>
           {todoArr.map((e) => {
@@ -51,7 +57,13 @@ const Home = () => {
                   >
                     Remove
                   </button>
-                  <button onClick={editTodo}>Edit</button>
+                  <button
+                    onClick={() => {
+                      dispatch(editToDo(e.id));
+                    }}
+                  >
+                    Edit
+                  </button>
                 </li>
               </>
             );
