@@ -20,28 +20,16 @@ const toDoSlice = createSlice(
 
                 )
             },
-            removeToDo: (state, action) => {
-                return state.ToDoArr = state.ToDoArr.filter(
-                    (todos) => { todos.id !== action.payload }, // issue yha hy just 
 
-
-                );
-            },
             editToDo: (state, action) => {
-                state.ToDoArr.push( //purana wla remove nhi ho rha hy
-                    {
-                        id: action.payload,
-                        todo: prompt("Please Insert Your Task"),
-                    },
-
-
-                );
+                state.ToDoArr.filter((todo) => todo.id == action.payload ? todo.todo = prompt("Your Task Here") : "")
             },
             deleteToDo: (state, action) => {
                 state.ToDoArr = []
-
-
-
+            },
+            removeToDo: (state, action) => {
+                // console.log(action.payload)
+                state.ToDoArr = state.ToDoArr.filter((todo) => todo.id != action.payload)
             },
         }
     }

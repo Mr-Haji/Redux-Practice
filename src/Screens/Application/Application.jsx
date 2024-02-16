@@ -13,15 +13,9 @@ const Home = () => {
 
   // get data from store
   const dispatch = useDispatch();
-  const todoArr = useSelector((state) => state.toDoSliceReducer.ToDoArr);
-  console.log("globalState", todoArr);
+  const getToDos = useSelector((state) => state.toDoSliceReducer.ToDoArr);
+  console.log("globalState", getToDos);
 
-  //Edit ToDo
-  const editTodo = () => {
-    console.log("Work IP");
-  };
-
- 
   return (
     <>
       <input
@@ -45,7 +39,7 @@ const Home = () => {
       </button>
       <div>
         <ol>
-          {todoArr.map((e) => {
+          {getToDos.map((e) => {
             return (
               <>
                 <li key={e.id}>
