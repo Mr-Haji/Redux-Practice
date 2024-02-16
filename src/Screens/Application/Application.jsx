@@ -8,6 +8,8 @@ import {
   editToDo,
 } from "../../Store/toDoSlice";
 
+import { Button, Stack, TextField } from "@mui/material";
+
 const Home = () => {
   const [inputValue, setInputValue] = useState("");
 
@@ -17,54 +19,76 @@ const Home = () => {
   console.log("globalState", getToDos);
 
   return (
-    <>
-      <input
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-      <button
-        onClick={() => {
-          dispatch(addToDo(inputValue));
-          setInputValue("");
+    <Stack>
+      <Stack
+        sx={{
+          flexDirection: "row",
+          textAlign: "center",
+          alignSelf: "center",
         }}
       >
-        Add
-      </button>
-      <button
-        onClick={() => {
-          dispatch(deleteToDo());
+        <TextField
+          sx={{
+            width: "200px",
+          }}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          variant="standard"
+        />
+
+        <Button
+          variant="text"
+          onClick={() => {
+            dispatch(addToDo(inputValue));
+            setInputValue("");
+          }}
+        >
+          Add Task
+        </Button>
+        <Button
+          variant="text"
+          onClick={() => {
+            dispatch(deleteToDo());
+          }}
+        >
+          Delete
+        </Button>
+      </Stack>
+
+      <Stack
+        sx={{
+          flexDirection: "column",
+          textAlign: "center",
+          alignItems: "center",
         }}
       >
-        Delete
-      </button>
-      <div>
         <ol>
           {getToDos.map((e) => {
             return (
               <>
                 <li key={e.id}>
                   {e.todo}
-                  <button
+                  <Button
                     onClick={() => {
                       dispatch(removeToDo(e.id));
                     }}
                   >
                     Remove
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     onClick={() => {
                       dispatch(editToDo(e.id));
                     }}
                   >
                     Edit
-                  </button>
+                  </Button>
                 </li>
               </>
             );
           })}
         </ol>
-      </div>
-    </>
+      </Stack>
+    </Stack>
   );
 };
 
